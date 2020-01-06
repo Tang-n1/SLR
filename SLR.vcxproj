@@ -76,6 +76,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -123,7 +124,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\include\Display.h" />
     <ClCompile Include="src\include\SLR_Parsing.h" />
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
@@ -131,6 +131,7 @@
     <ClInclude Include="src\include\basic.h" />
     <ClInclude Include="src\include\First_Follow.h" />
     <ClInclude Include="src\include\Lex.h" />
+    <ClInclude Include="src\include\ReadGrammar.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

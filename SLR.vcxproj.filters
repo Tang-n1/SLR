@@ -18,9 +18,6 @@
     <ClCompile Include="src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\include\Display.h">
-      <Filter>Header Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\include\SLR_Parsing.h">
       <Filter>Header Files</Filter>
     </ClCompile>
@@ -33,6 +30,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\include\First_Follow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\ReadGrammar.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

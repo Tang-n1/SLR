@@ -1,8 +1,5 @@
-#include "include/basic.h"
-#include "include/Lex.h"
-#include "include/SLR_Parsing.h"
-#include "include/Display.h"
+#include"include/ReadGrammar.h"
 
 int main() {
-	//lex
+	readGrammar();
 }

@@ -129,7 +129,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\include\basic.h" />
-    <ClInclude Include="src\include\First_Follow.h" />
+    <ClInclude Include="src\include\First.h" />
     <ClInclude Include="src\include\Lex.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

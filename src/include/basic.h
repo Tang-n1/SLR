@@ -7,6 +7,7 @@
 #include <map>
 #include <vector>
 #include <iterator>
+#include <set>
 
 using namespace std;
 
@@ -14,11 +15,12 @@ using namespace std;
 #define path "D://WorkSpace//Cpp//SLR_Parser//SLR//src//test.txt"
 
 map<char, vector<string>> grammer; //文法
-map<char, vector<string>> first;
-map<char, vector<string>> follow;
 string first_non_terminal_symbol; //开始文法
 string terminal_symbol;		//终结符
 string non_terminal_symbol;	//非终结符
+map<char, set<char>> First; //first集合
+map<char, set<char>> Follow; //follow集合
+map<char, bool>To_epsilon;  //first集合中是否存在空串
 
 void display_Str(string title, string str) {
 	cout << title << endl;

@@ -1,28 +1,29 @@
 #pragma once
-#include"Lex.h"
-#include <iostream>
-#include <vector>
-#include <map>
-#include <set>
-#include <fstream>
+#include "basic.h"
 
-using namespace std;
-
-map<char, vector<string>> Grammer;          //文法
-map<char, set<char>> First; //first集合
-map<char, set<char>> Follow; //follow集合
-map<char, bool>To_epsilon;  //first集合中是否存在空串
-set<char> NonTerminalSet; //非终结符集合
-set<char> TerminalSet; //终结符集合
 int FirstSize;
+
+void printfirst() {  //打印
+	cout << "First集：" << endl;
+	for (char ch_f : non_terminal_symbol) { //取非终结符集合
+		cout << "First(";
+		cout << ch_f << ") = { ";
+		set<char> print_first;
+		print_first = First[ch_f];  //取每个非终结符的first集
+		for (char ch : print_first) {
+			cout << ch << ",";
+		}
+		cout << " }" << endl;
+	}
+}
 
 void Getfirst() {  //获取first集
 	bool flag = true;
 	while (flag) {
 		flag = false;
-		for (char nonte_Char : NonTerminalSet) { //遍历非终结符（等式的左边）
+		for (char nonte_Char : non_terminal_symbol) { //遍历非终结符（等式的左边）
 			FirstSize = First[nonte_Char].size(); //记录非终结符个数
-			for (string RightSide : Grammer[nonte_Char]) { //遍历产生式的右部
+			for (string RightSide : grammer[nonte_Char]) { //遍历产生式的右部
 				for (char ch : RightSide) {  //遍历产生式右部的所有字符
 					//不是大写字母，如果是终结符,说明该产生式遍历完成
 					if (!isupper(ch)) { 
@@ -50,21 +51,10 @@ void Getfirst() {  //获取first集
 			}
 		}
 	}
-	for (char nonte_Char : NonTerminalSet) { //遍历非终结符集合
+	for (char nonte_Char : non_terminal_symbol) { //遍历非终结符集合
 		//当找到的ε是结束字符end()，返回0；否则返回To_epsilon[nonte_Char]=1
 		To_epsilon[nonte_Char] = First[nonte_Char].find('ε') != First[nonte_Char].end();
 	}
+	printfirst();
 }
-void printfirst() {  //打印
-	cout << "First集：" << endl;
-	for (char ch_f : NonTerminalSet) { //取非终结符集合
-		cout << "First(";
-		cout << ch_f << ") = { ";
-		set<char> print_first;
-		print_first = First[ch_f];  //取每个非终结符的first集
-		for (char ch : print_first) {
-			cout << ch << ",";
-		}
-		cout <<" }"<< endl;
-	}
-}
+

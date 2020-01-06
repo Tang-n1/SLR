@@ -35,7 +35,7 @@
     <ClInclude Include="src\include\ReadGrammar.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\include\FOLLOW.h">
+    <ClInclude Include="src\include\Follow.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

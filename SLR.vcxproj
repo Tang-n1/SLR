@@ -130,7 +130,7 @@
   <ItemGroup>
     <ClInclude Include="src\include\basic.h" />
     <ClInclude Include="src\include\First.h" />
-    <ClInclude Include="src\include\FOLLOW.h" />
+    <ClInclude Include="src\include\Follow.h" />
     <ClInclude Include="src\include\Lex.h" />
     <ClInclude Include="src\include\ReadGrammar.h" />
   </ItemGroup>

@@ -1,23 +1,8 @@
 #pragma once
 #include "basic.h"
 
-void printFOLLOW() {    //打印 FOLLOW 集合
-	cout << "-----------FOLLOW集-----------" << endl;
-	for (char chr : non_terminal_symbol) {
-		cout << "FOLLOW(";
-		cout << chr << ") = { ";
-		set<char> follow;
-		follow = Follow[chr];
-		for (char ch : follow) {
-			cout << ch << ",";
-		}
-		cout << chr << " } ";
-		cout << endl;
-	}
-	cout << endl;
-}
 
-void setFOLLOW() {	//计算FOLLOW集合
+void setFollow() {	//计算FOLLOW集合
 	bool update = true;
 	while (update) {
 		update = false;
@@ -73,6 +58,6 @@ void setFOLLOW() {	//计算FOLLOW集合
 			}
 		}
 	}
-	printFOLLOW();
+	display_Set("Follow集合：", Follow);
 }
 

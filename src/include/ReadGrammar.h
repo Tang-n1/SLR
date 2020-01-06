@@ -26,6 +26,7 @@ void readGrammar() {   //读入文法，初始化终结符集合与非终结符集合
 		grammer[temp[0]].push_back(temp.substr(3)); //添加文法
 		if (flag) {
 			first_non_terminal_symbol = temp[0]; //起始符号
+			Follow[temp[0]].insert('$');
 			flag = false;
 		}
 		if (is_in(temp[0], non_terminal_symbol)) {

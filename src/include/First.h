@@ -3,21 +3,7 @@
 
 int FirstSize;
 
-void printfirst() {  //打印
-	cout << "First集：" << endl;
-	for (char ch_f : non_terminal_symbol) { //取非终结符集合
-		cout << "First(";
-		cout << ch_f << ") = { ";
-		set<char> print_first;
-		print_first = First[ch_f];  //取每个非终结符的first集
-		for (char ch : print_first) {
-			cout << ch << ",";
-		}
-		cout << " }" << endl;
-	}
-}
-
-void Getfirst() {  //获取first集
+void setFirst() {  //获取first集
 	bool flag = true;
 	while (flag) {
 		flag = false;
@@ -53,8 +39,8 @@ void Getfirst() {  //获取first集
 	}
 	for (char nonte_Char : non_terminal_symbol) { //遍历非终结符集合
 		//当找到的ε是结束字符end()，返回0；否则返回To_epsilon[nonte_Char]=1
-		To_epsilon[nonte_Char] = First[nonte_Char].find('ε') != First[nonte_Char].end();
+		To_epsilon[nonte_Char] = First[nonte_Char].find('@') != First[nonte_Char].end();
 	}
-	printfirst();
+	display_Set("First集合：", First);
 }
 

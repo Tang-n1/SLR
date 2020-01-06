@@ -1,9 +1,9 @@
 #include "include/ReadGrammar.h"
 #include "include/First.h"
-#include "include/FOLLOW.h"
+#include "include/Follow.h"
 
 int main() {
 	readGrammar();
-	Getfirst();
-	setFOLLOW();
+	setFirst();
+	setFollow();
 }

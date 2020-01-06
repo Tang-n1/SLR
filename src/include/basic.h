@@ -12,7 +12,7 @@
 using namespace std;
 
 #define MAX 200
-#define path "D://WorkSpace//Cpp//SLR_Parser//SLR//src//test.txt"
+#define path "./test.txt"
 
 map<char, vector<string>> grammer; //文法
 string first_non_terminal_symbol; //开始文法
@@ -21,6 +21,26 @@ string non_terminal_symbol;	//非终结符
 map<char, set<char>> First; //first集合
 map<char, set<char>> Follow; //follow集合
 map<char, bool>To_epsilon;  //first集合中是否存在空串
+
+void display_Set(string title, map<char, set<char>> ma) {  //打印
+	cout << title << endl;
+	set<char> temp;
+	for (auto it = ma.begin(); it != ma.end(); it++) {
+		cout << "First(" << it->first << ") = { ";
+		temp = ma[it->first];
+		int flag = 1;
+		for (char ch : temp) {
+			if (flag) {
+				cout << ch;
+			}
+			else {
+				cout << ", " << ch;
+			}
+			flag = 0;
+		}
+		cout << " }" << endl;
+	}
+}
 
 void display_Str(string title, string str) {
 	cout << title << endl;

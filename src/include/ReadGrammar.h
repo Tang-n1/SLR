@@ -19,10 +19,10 @@ void readGrammar() {   //读入文法，初始化终结符集合与非终结符集合
 	}
 	string temp;
 	bool flag = true;
-	cout << "文法：" << endl;
+	cout << endl << "文法：" << endl;
 	while (getline(in, temp)) {
 		deleteBlank(temp);
-		cout << temp << endl;
+		cout <<"\t"<< temp << endl;
 		grammer[temp[0]].push_back(temp.substr(3)); //添加文法
 		if (flag) {
 			first_non_terminal_symbol = temp[0]; //起始符号
@@ -39,8 +39,8 @@ void readGrammar() {   //读入文法，初始化终结符集合与非终结符集合
 		}
 	}
 	cout << endl;
-	display_Str("终结符：", terminal_symbol);
-	display_Str("非终结符：", non_terminal_symbol);
+	display_Str("终结符：\n\t", terminal_symbol);
+	display_Str("非终结符：\n\t", non_terminal_symbol);
 }
 
 

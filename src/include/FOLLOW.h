@@ -58,6 +58,6 @@ void setFollow() {	//计算FOLLOW集合
 			}
 		}
 	}
-	display_Set("Follow集合：", Follow);
+	display_Set("\nFollow集合：", Follow);
 }
 

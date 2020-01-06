@@ -20,7 +20,7 @@ void setFirst() {  //获取first集
 					else {
 						bool Epsilon_falg = false; //first中是否存在空
 						for (char temp : First[ch]) {
-							if (temp == 'ε') { //存在空串
+							if (temp == '@') { //存在空串
 								Epsilon_falg = true;
 							}
 							//将非终结符ch的first集合加入到非终结符的first集合中

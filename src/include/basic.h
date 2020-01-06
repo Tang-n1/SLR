@@ -26,7 +26,7 @@ void display_Set(string title, map<char, set<char>> ma) {  //¥Ú”°
 	cout << title << endl;
 	set<char> temp;
 	for (auto it = ma.begin(); it != ma.end(); it++) {
-		cout << "First(" << it->first << ") = { ";
+		cout <<"\t"<< "First(" << it->first << ") = { ";
 		temp = ma[it->first];
 		int flag = 1;
 		for (char ch : temp) {
@@ -43,7 +43,7 @@ void display_Set(string title, map<char, set<char>> ma) {  //¥Ú”°
 }
 
 void display_Str(string title, string str) {
-	cout << title << endl;
+	cout << title ;
 	for (int i = 0; i < str.length(); i++) {
 		cout << str[i] << " ";
 	}
@@ -51,7 +51,7 @@ void display_Str(string title, string str) {
 }
 
 void display_Map(string title, map<char, vector<string>> ma) {
-	cout << title << endl;
+	cout << title ;
 	for (auto it = ma.begin(); it != ma.end(); it++) {
 		cout << it->first << "->";
 		copy(it->second.begin(), it->second.end(), ostream_iterator<string>(cout, " "));

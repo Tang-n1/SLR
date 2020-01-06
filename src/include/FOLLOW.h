@@ -5,7 +5,7 @@
 #include <set>
 #include <fstream>
 
-using namespace std;
+using namespace std;//
 
 map<char, vector<string>> GRAMMAR;          //文法
 map<char, set<char>> FIRST;                 //非终结符的first集合

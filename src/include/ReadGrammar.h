@@ -39,8 +39,9 @@ void readGrammar() {   //读入文法，初始化终结符集合与非终结符集合
 		}
 	}
 	cout << endl;
-	display_Str("终结符：\n\t", terminal_symbol);
-	display_Str("非终结符：\n\t", non_terminal_symbol);
+	display_Str("终结符：", terminal_symbol);
+	display_Str("非终结符：", non_terminal_symbol);
+	//display_Map("文法：", grammer);
 }
 
 

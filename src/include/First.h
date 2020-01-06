@@ -41,6 +41,6 @@ void setFirst() {  //获取first集
 		//当找到的ε是结束字符end()，返回0；否则返回To_epsilon[nonte_Char]=1
 		To_epsilon[nonte_Char] = First[nonte_Char].find('@') != First[nonte_Char].end();
 	}
-	display_Set("First集合：", First);
+	display_Set("First", First);
 }
 

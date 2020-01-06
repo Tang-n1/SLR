@@ -23,10 +23,10 @@ map<char, set<char>> Follow; //follow集合
 map<char, bool>To_epsilon;  //first集合中是否存在空串
 
 void display_Set(string title, map<char, set<char>> ma) {  //打印
-	cout << title << endl;
+	cout << title<<"集合：" << endl;
 	set<char> temp;
 	for (auto it = ma.begin(); it != ma.end(); it++) {
-		cout <<"\t"<< "First(" << it->first << ") = { ";
+		cout <<"\t"<< title <<"(" << it->first << ") = { ";
 		temp = ma[it->first];
 		int flag = 1;
 		for (char ch : temp) {
@@ -40,10 +40,11 @@ void display_Set(string title, map<char, set<char>> ma) {  //打印
 		}
 		cout << " }" << endl;
 	}
+	cout << endl;
 }
 
 void display_Str(string title, string str) {
-	cout << title ;
+	cout << title<<"\n\t";
 	for (int i = 0; i < str.length(); i++) {
 		cout << str[i] << " ";
 	}

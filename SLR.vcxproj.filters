@@ -29,7 +29,7 @@
     <ClInclude Include="src\include\Lex.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\include\First_Follow.h">
+    <ClInclude Include="src\include\First.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\include\ReadGrammar.h">

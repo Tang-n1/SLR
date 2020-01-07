@@ -36,8 +36,9 @@ void create_SLRTable() {
 
 void show_SLRTable() {
 	create_SLRTable();
+	cout << "SLR Table:" << endl;
 	for (int i = 0; i < slr_cnt; i++) {
-		cout << slr[i].state << ": " << slr[i].row << ": " << slr[i].action << endl;
+		cout << '\t' << slr[i].state << ": " << slr[i].row << ": " << slr[i].action << endl;
 	}
 }
 

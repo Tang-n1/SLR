@@ -24,6 +24,13 @@ map<char, set<char>> First; //first集合
 map<char, set<char>> Follow; //follow集合
 map<char, bool>To_epsilon;  //first集合中是否存在空串
 
+char input_str[30];  //输入字符串
+typedef struct {
+	char data[50];
+	int num;
+}midsta; //词法分析过后的字符串
+midsta m[10];
+
 void display_Set(string title, map<char, set<char>> ma) {  //打印
 	cout << title<<"集合：" << endl;
 	set<char> temp;

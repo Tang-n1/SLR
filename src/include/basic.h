@@ -15,12 +15,19 @@ using namespace std;
 #define path "./test.txt"
 
 map<char, vector<string>> grammer; //文法
-string first_non_terminal_symbol; //开始文法
-string terminal_symbol;		//终结符
-string non_terminal_symbol;	//非终结符
 map<char, set<char>> First; //first集合
 map<char, set<char>> Follow; //follow集合
 map<char, bool>To_epsilon;  //first集合中是否存在空串
+string first_non_terminal_symbol; //开始文法
+string terminal_symbol;		//终结符
+string non_terminal_symbol;	//非终结符
+
+char input_str[30];  //输入字符串
+typedef struct {
+	char data[50];
+	int num;
+}midsta; //词法分析过后的字符串
+midsta m[10];
 
 void display_Set(string title, map<char, set<char>> ma) {  //打印
 	cout << title<<"集合：" << endl;
@@ -44,7 +51,7 @@ void display_Set(string title, map<char, set<char>> ma) {  //打印
 }
 
 void display_Str(string title, string str) {
-	cout << title<<"\n\t";
+	cout << title << "\n\t";
 	for (int i = 0; i < str.length(); i++) {
 		cout << str[i] << " ";
 	}
@@ -58,6 +65,14 @@ void display_Map(string title, map<char, vector<string>> ma) {
 		copy(it->second.begin(), it->second.end(), ostream_iterator<string>(cout, " "));
 		cout << endl;
 	}
+}
+
+void display_struct(string title,int length) {
+	cout << "\n" << title << "\n\t";
+	for (int i = 0; i < length; i++) {
+		cout << m[i].data << "，";
+	}
+	cout << endl;
 }
 
 bool is_in(char ch, string str) {

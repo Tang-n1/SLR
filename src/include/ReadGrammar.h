@@ -18,14 +18,16 @@ void readGrammar() {   //读入文法，初始化终结符集合与非终结符集合
 		exit(0);	//结束程序
 	}
 	string temp;
+	int cnt = 1;
 	bool flag = true;
-	cout << endl << "文法：" << endl;
 	while (getline(in, temp)) {
 		deleteBlank(temp);
-		cout <<"\t"<< temp << endl;
 		grammer[temp[0]].push_back(temp.substr(3)); //添加文法
+		production[cnt].push_back(temp);
+		cnt++;
 		if (flag) {
 			first_non_terminal_symbol = temp[0]; //起始符号
+			items[0].push_back("S->." + first_non_terminal_symbol);
 			Follow[temp[0]].insert('$');
 			flag = false;
 		}
@@ -39,8 +41,9 @@ void readGrammar() {   //读入文法，初始化终结符集合与非终结符集合
 		}
 	}
 	cout << endl;
-	display_Str("终结符：", terminal_symbol);
-	display_Str("非终结符：", non_terminal_symbol);
+	display_Map("产生式：", production);
+	display_Str("终结符集合：", terminal_symbol);
+	display_Str("非终结符集合：", non_terminal_symbol);
 	//display_Map("文法：", grammer);
 }
 

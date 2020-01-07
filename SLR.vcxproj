@@ -124,7 +124,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\include\SLR_Parsing.h" />
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -133,6 +132,7 @@
     <ClInclude Include="src\include\Follow.h" />
     <ClInclude Include="src\include\Lex.h" />
     <ClInclude Include="src\include\ReadGrammar.h" />
+    <ClInclude Include="src\include\SLRparsing.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

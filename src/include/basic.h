@@ -34,7 +34,7 @@ typedef struct {
 	char data[50];
 	int value;
 }midsta; //词法分析过后的字符串
-midsta m[20];
+midsta symbolTables[20];
 
 void display_Set(string title, map<char, set<char>> ma) {  //打印
 	cout << title<<"集合：" << endl;
@@ -58,7 +58,7 @@ void display_Set(string title, map<char, set<char>> ma) {  //打印
 }
 
 void display_Str(string title, string str) {
-	cout << title<<"集合\n\t";
+	cout << title<<"\n\t";
 	for (int i = 0; i < str.length(); i++) {
 		cout << str[i] << " ";
 	}
@@ -77,7 +77,7 @@ template<typename T> void display_Map(string title, map<T, vector<string>> ma) {
 void display_struct(string title, int length) {
 	cout << title << endl;
 	for (int j = 0; j < length; j++) {
-		cout << "\t" << m[j].value << "\t" << m[j].data << endl;
+		cout << "\t" << symbolTables[j].value << "\t" << symbolTables[j].data << endl;
  	}
 }
 

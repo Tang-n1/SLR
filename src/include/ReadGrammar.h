@@ -23,8 +23,10 @@ void readGrammar() {   //读入文法，初始化终结符集合与非终结符集合
 	while (getline(in, temp)) {
 		deleteBlank(temp);
 		grammer[temp[0]].push_back(temp.substr(3)); //添加文法
-		production[cnt].push_back(temp);
-		cnt++;
+		if (temp[3] != '@') {
+			production[cnt].push_back(temp);
+			cnt++;
+		}
 		if (flag) {
 			first_non_terminal_symbol = temp[0]; //起始符号
 			items[0].push_back("S->." + first_non_terminal_symbol);

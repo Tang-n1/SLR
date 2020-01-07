@@ -22,18 +22,18 @@ void lex() {  //词法分析器
 				concat();
 				m_getch();
 			}
-			m[i].value = 10;
+			symbolTables[i].value = 10;
 		}
 		else if (Isdigit()) {  //数字num
 			while (Isdigit()) { //数字结尾
 				concat();
 				m_getch();
 			}
-			m[i].value = 1;
+			symbolTables[i].value = 1;
 		}
 		else if(Isoperator()) {  //运算符号
 			m_getch();
-			m[i].value = 0;
+			symbolTables[i].value = 0;
 		}
 		i++;
 		m_i = 0;
@@ -49,8 +49,8 @@ char m_getch() //读取字符
 }
 
 int Isoperator() { //运算符判断
-	if (ch == '+' || ch == '-' || ch == '*' || ch == '/') {
-		m[i].data[0] = ch;
+	if (ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '(' || ch == ')') {
+		symbolTables[i].data[0] = ch;
 		return 1;
 	}
 	else {
@@ -87,7 +87,7 @@ int Isunderline() { //下划线判断
 
 void concat() //拼接单词
 {
-	m[i].data[m_i] = ch;
+	symbolTables[i].data[m_i] = ch;
 	m_i++;
-	m[i].data[m_i] = '\0';
+	symbolTables[i].data[m_i] = '\0';
 }

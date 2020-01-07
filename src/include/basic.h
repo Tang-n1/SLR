@@ -25,11 +25,16 @@ map<char, set<char>> Follow; //follow集合
 map<char, bool>To_epsilon;  //first集合中是否存在空串
 
 char input_str[30];  //输入字符串
-typedef struct {
+/*	
+	标识符ID	类型value = 10
+	数字NUM		类型value = 1
+	其他（运算符）类型value = 0
+*/
+typedef struct {    
 	char data[50];
-	int num;
+	int value;
 }midsta; //词法分析过后的字符串
-midsta m[10];
+midsta m[20];
 
 void display_Set(string title, map<char, set<char>> ma) {  //打印
 	cout << title<<"集合：" << endl;
@@ -67,6 +72,13 @@ template<typename T> void display_Map(string title, map<T, vector<string>> ma) {
 		copy(it->second.begin(), it->second.end(), ostream_iterator<string>(cout, " "));
 		cout << endl;
 	}
+}
+
+void display_struct(string title, int length) {
+	cout << title << endl;
+	for (int j = 0; j < length; j++) {
+		cout << "\t" << m[j].value << "\t" << m[j].data << endl;
+ 	}
 }
 
 bool is_in(char ch, string str) {  

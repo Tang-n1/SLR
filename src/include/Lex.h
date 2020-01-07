@@ -22,20 +22,23 @@ void lex() {  //词法分析器
 				concat();
 				m_getch();
 			}
+			m[i].value = 10;
 		}
 		else if (Isdigit()) {  //数字num
 			while (Isdigit()) { //数字结尾
 				concat();
 				m_getch();
 			}
+			m[i].value = 1;
 		}
 		else if(Isoperator()) {  //运算符号
 			m_getch();
+			m[i].value = 0;
 		}
 		i++;
 		m_i = 0;
 	}
-	//display_struct("词法分析器:", i);
+	display_struct("词法分析器:", i);
 };
 
 char m_getch() //读取字符

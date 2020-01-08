@@ -4,7 +4,7 @@
 void deleteBlank(string& str) {
 	int begin = 0;
 	begin = str.find(" ", begin);	//查找空格在str中第一次出现的位置
-	while (begin != -1){	//表示字符串中存在空格
+	while (begin != -1){	//表示字符串中存在空格f
 		str.replace(begin, 1, "");	//用空串替换str中从begin开始的1个字符
 		begin = str.find(" ", begin);	//查找空格在替换后的str中第一次出现的位置
 	}

@@ -16,7 +16,7 @@ int m_i = 0, i_i = 0, i = 0;  //结构体中data的移动，输入字符串的移动，结构体数组
 void lex() {  //词法分析器
 	int k = 0;
 	m_getch();
-	while (ch != '#') {
+	while (ch != '$') {
 		if (Isletter()) {  //字符开头的ID
 			while (Isunderline() || Isdigit() || Isletter()) { //以下划线，数字，字母结尾
 				concat();
@@ -38,6 +38,8 @@ void lex() {  //词法分析器
 		i++;
 		m_i = 0;
 	}
+	symbolTables[i].data[0] = '$';
+	symbolTables[i].value = 0;
 	display_struct("词法分析器:", i);
 };
 

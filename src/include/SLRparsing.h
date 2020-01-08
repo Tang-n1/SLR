@@ -3,7 +3,7 @@
 
 
 struct SLR_Table {
-	int state;
+	char state;
 	char row;
 	string action;
 };
@@ -11,8 +11,18 @@ struct SLR_Table {
 SLR_Table slr[MAX];  
 int slr_cnt = 0;
 
+bool inSLR(char state, char row, string action) {
+	for (int i = 0; i < slr_cnt; i++) {
+		if (state == slr[i].state && row == slr[i].row && action == slr[i].action) {
+			return true;
+		}
+	}
+	return false;
+}
+
+
 void create_SLRTable() {
-	slr[slr_cnt] = { 1,'$',"acc" };
+	slr[slr_cnt] = { '1','$',"acc" };
 	slr_cnt++;
 	int num = items_key();
 	for (int i = 0; i < num; i++) {
@@ -24,9 +34,12 @@ void create_SLRTable() {
 				auto it = Follow.find(temp[0]);
 				for (char ch : it->second) {
 					//cout << ch << " ";
-					string go_to = "r" + to_string(find_key(temp));
-					slr[slr_cnt] = { i,ch, go_to };
-					slr_cnt++;
+					string go_to = "r";
+					go_to += int_char(find_key(temp));
+					if (!inSLR(int_char(i), ch, go_to)) {
+						slr[slr_cnt] = { int_char(i),ch, go_to };
+						slr_cnt++;
+					}
 				}
 			}
 		}
@@ -36,15 +49,42 @@ void create_SLRTable() {
 void show_SLRTable() {
 	create_SLRTable();
 	cout <<endl << "SLR Table:" << endl;
+	string row = terminal_symbol + "$" + non_terminal_symbol;
 	for (int i = 0; i < slr_cnt; i++) {
-		cout << '\t' << slr[i].state << ": " << slr[i].row << ": " << slr[i].action << endl;
+		cout << slr[i].state << ": " << slr[i].row << ": " << slr[i].action << endl;
 	}
+	cout << "-----------------------------------------------------------------------------------------------------" << endl;
+	cout << "  "<<"\t";
+	for (int i = 0; i < row.length(); i++) {
+		cout << row[i] << "\t";
+	}
+	cout <<endl<< "-----------------------------------------------------------------------------------------------------" << endl;
+	//for (int i = 0; i < slr_cnt; i++) {
+	int len = char_int(slr[slr_cnt - 1].state);
+	for (int i = 0; i <= len; i++) {
+		cout << int_char(i) << "\t";
+		for (int j = 0; j < row.length(); j++) {
+			int flag = 0;
+			for (int k = 0; k < slr_cnt; k++) {
+				if (slr[k].state == int_char(i) && slr[k].row == row[j]) {
+					cout << slr[k].action << "\t";
+					flag = 1;
+				}
+			}
+			if (!flag) {
+				cout <<"error"<< "\t";
+			}
+		}
+		cout << endl;
+	}
+	cout << "-----------------------------------------------------------------------------------------------------" << endl;
 }
 
 void expandItems(int num) {  //扩展项目集族
 	int cnt = 0, cnt2 = 0;
 	do {
 		string expand = after_point(num);
+		//cout << expand << endl;
 		cnt = items_number(num);
 		for (int i = 0; i < expand.length(); i++) {
 			char symbol = expand[i];
@@ -62,7 +102,9 @@ void expandItems(int num) {  //扩展项目集族
 }
 
 void new_item(int num, char ch) {
+	int item_cnt = items_key();
 	auto it = items.find(num);
+	int have_new = 0;
 	for (string temp : it->second) {
 		for (int i = 0; i < temp.length(); i++) {
 			if (temp[i] == '.' && temp[i + 1] != '\0') {
@@ -72,24 +114,42 @@ void new_item(int num, char ch) {
 					temp2.insert(i + 1, ".");
 					int flag = 0;
 					for (int i = 0; i < items_key(); i++) {
-						if (in_items(i, temp2)) {	//无已有状态
+						if (in_items(i, temp2)&&have_new==0) {	//无已有状态
 							flag = 1;//存在
+							string action="";
+							if (isupper(ch)) {
+								action += int_char(i);
+								cout << "action:" << action << endl;
+							}
+							else {
+								action = "s";
+								action += int_char(i);
+								cout << "action:" << action << endl;
+							}
+							if (!inSLR(int_char(num), ch, action)) {
+								slr[slr_cnt] = { int_char(num),ch,action };
+								slr_cnt++;
+							}
 						}
 					}
 					if (!flag) {
-						items[items_key()].push_back(temp2);
+						items[item_cnt].push_back(temp2);
+						have_new = 1;
 						int x = items_key() - 1;
-						string action;
+						string action="";
 						if (isupper(ch)) {
-							action = to_string(x);
+							action += int_char(x);
+							cout << "action:" << action << endl;
 						}
 						else {
 							action = "s";
-							action.insert(1, to_string(x));
+							action += int_char(x);
+							cout << "action:" << action << endl;
 						}
-						//cout <<"action: " << h << endl;
-						slr[slr_cnt] = { num,ch,action };
-						slr_cnt++;
+						if (!inSLR(int_char(num), ch, action)) {
+							slr[slr_cnt] = { int_char(num),ch,action };
+							slr_cnt++;
+						}
 					}
 				}
 			}
@@ -102,16 +162,19 @@ void new_item(int num, char ch) {
 void setDFA() {
 	int num = 0;
 	expandItems(0);
-	int zt = 0, zt2 = 0;
+	int zt = 0, zt2 = 1;
 	int x = 0;
 	do {
+		int index = zt;
 		zt = items_key();
 		//扩展项目集族+创建SLR分析表
-		for (int num = 0; num < zt; num++) {
+		for (int num = index; num < zt; num++) {
 			auto it = items.find(num);
 			string expand = after_point(num);
+			//cout << expand << endl;
 			for (int i = 0; i < expand.length(); i++) {
 				new_item(num, expand[i]);
+				//display_Map("DFA：", items);
 			}
 		}
 		zt2 = items_key();

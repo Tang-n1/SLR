@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <iomanip>
 #include <fstream>
 #include <stdlib.h>
 #include <string>
@@ -117,6 +118,7 @@ bool in_items(int num,string str) { //key中是否存在该字符串
 	return false;
 }
 
+
 string after_point(int num) {  //点后的字符
 	auto it = items.find(num);
 	string expand = "";
@@ -125,7 +127,7 @@ string after_point(int num) {  //点后的字符
 			if (temp[i] == '.'&&temp[i+1]!='\0') {
 				string::size_type index;
 				index = expand.find(temp[i + 1]);
-				if (index == string::npos) {
+				if (index == string::npos&&is_in(temp[i+1],expand)) {
 					expand += temp[i + 1];
 				}
 			}
@@ -147,6 +149,28 @@ int find_key(string temp) {
 	}
 }
 
+char int_char(int i) {
+	char ch;
+	if (i < 10) {
+		ch = (char)(i + '0');;
+	}
+	else {
+		i = i + 87;
+		ch = i;
+	}
+	return ch;
+}
+
+int char_int(char ch) {
+	int i;
+	if (ch < 'a') {
+		i = (int)(ch - '0');
+	}
+	else {
+		i = ch - 87;
+	}
+	return i;
+}
 
 
 

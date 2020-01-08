@@ -54,15 +54,17 @@ int action_goto(string s, string a, int value) {
 }
 
 void displayAction(SqStack<string> *st, int ip, string action) {
-	DispStack(st);
-	cout << "\t\t\t\t\t\t\t";
+	DispStack(st); //栈
+	end_string = "";
 	int i = ip-1;
-	do {
+	do {  //输入
 		i++;
-		cout << symbolTables[i].data << " ";
+		end_string += symbolTables[i].data;
+		end_string += " ";
 	} while (symbolTables[i].data[0] != '$'); 
-	cout << "\t\t\t\t\t";
-	cout << action << endl;
+	cout << right << setw(30) << end_string;
+	cout << right <<setw(30)<< action << endl; //动作
+	end_string = "";
 }
 
 void Parsing_SLR(){   //gbk+68*h$
@@ -74,7 +76,7 @@ void Parsing_SLR(){   //gbk+68*h$
 	bool flag = true;
 	bool ok = false;
 	cout << "--------------------------------------------------------------------------------------------------------" << endl;
-	cout << "  栈"<<"\t\t\t\t\t\t\t"<<"输入"<< "\t\t\t\t\t" <<"动作" << endl;
+	cout << left << "  栈" << setw(50) << right << "输入" << setw(30) << right << "动作" << endl;
 	cout << "--------------------------------------------------------------------------------------------------------" << endl;
 	string action;
 	int index = ip;

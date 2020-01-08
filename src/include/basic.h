@@ -25,6 +25,7 @@ map<char, set<char>> First; //first集合
 map<char, set<char>> Follow; //follow集合
 map<char, bool>To_epsilon;  //first集合中是否存在空串
 
+string end_string;
 char input_str[30];  //输入字符串
 /*	
 	标识符ID	类型value = 10

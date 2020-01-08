@@ -11,7 +11,7 @@ int main() {
 	setFollow();
 	setDFA();
 	cout << endl << endl;
-	cout << "ÇëÊäÈë²âÊÔ×Ö·û´®£¨ÒÔ$½áÎ²£©£º";//text£ºi_2a23_+34*ab
+	cout << "ÇëÊäÈë²âÊÔ×Ö·û´®£¨ÒÔ$½áÎ²£©£º";//text£ºi_2a23_+34*ab$
 	cin >> input_str;
 	lex();
 	Parsing_SLR();

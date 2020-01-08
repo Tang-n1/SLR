@@ -39,8 +39,9 @@ template<typename T> void DestroyStack(SqStack<T>*& S)
 template<typename T> void DispStack(SqStack<T>* S)
 {
 	for (int i = 0; i <= S->top; i++) {
-		cout << S->data[i];
+		end_string+=S->data[i];
 	}
+	cout <<left<<setw(30)<< end_string;
 }
 
 template<typename T> bool StackEmpty(SqStack<T>* S)

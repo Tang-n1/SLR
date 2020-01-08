@@ -131,8 +131,10 @@
     <ClInclude Include="src\include\First.h" />
     <ClInclude Include="src\include\Follow.h" />
     <ClInclude Include="src\include\Lex.h" />
+    <ClInclude Include="src\include\Parsing.h" />
     <ClInclude Include="src\include\ReadGrammar.h" />
     <ClInclude Include="src\include\SLRparsing.h" />
+    <ClInclude Include="src\include\SqStack.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
